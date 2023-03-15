@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    username: postgres
+    url: jdbc:postgresql://localhost:49153/rest_with_spring_bootdb
+    password: postgrespw
+  jpa:
+    database: POSTGRESQL
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: 'true'
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: none
+  database:
+    driverClassName: org.postgresql.Driver
+  hibernate:
+    show-sql: 'true'
