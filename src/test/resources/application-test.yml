@@ -1,0 +1,21 @@
+spring:
+  port: 8888
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: always
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    hibernate:
+      ddl-auto: update
+      jdbc:
+        lob:
+          non_contextual_creation: true
+    show-sql: true
+  hibernate:
+    format_sql: true
+  springdoc:
+    api-docs:
+      enabled: true
+    pathsToMatch: /api/**/v1/**
+    swagger-ui:
+      use-root-path: true
