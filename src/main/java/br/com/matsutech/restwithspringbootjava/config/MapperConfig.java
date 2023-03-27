@@ -1,4 +1,4 @@
-package br.com.matsutech.restwithspringbootjava.Config;
+package br.com.matsutech.restwithspringbootjava.config;
 
 import br.com.matsutech.restwithspringbootjava.maperCustom.PersonMapper;
 import org.springframework.context.annotation.Bean;
