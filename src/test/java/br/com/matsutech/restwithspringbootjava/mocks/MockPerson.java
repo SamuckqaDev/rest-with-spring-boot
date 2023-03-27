@@ -1,4 +1,4 @@
-package mocks;
+package br.com.matsutech.restwithspringbootjava.mocks;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,13 +1,14 @@
 package br.com.matsutech.restwithspringbootjava.exceptions;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.io.Serial;
 import java.io.Serializable;
 
-@ResponseStatus(HttpStatus.NOT_FOUND)
-public class ResourceNotFoundEntityException extends RuntimeException implements Serializable {
+@ResponseStatus(HttpStatus.FORBIDDEN)
+public class InvalidJwtAuthenticationException extends AuthenticationException implements Serializable {
 
     @Serial
     private static final long serialVersionUID;
@@ -16,7 +17,7 @@ public class ResourceNotFoundEntityException extends RuntimeException implements
         serialVersionUID = 1L;
     }
 
-    public ResourceNotFoundEntityException(String ex){
+    public InvalidJwtAuthenticationException(String ex){
         super(ex);
     }
 

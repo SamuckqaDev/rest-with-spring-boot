@@ -34,8 +34,8 @@ public class PersonServices {
 
 
     public List<PersonVO> findAll() {
-
         logger.info("Finding all people!");
+
         var persons = Mapper.parseListObject(repository.findAll(), PersonVO.class);
         persons.stream().forEach(person -> person.add(WebMvcLinkBuilder
                 .linkTo(WebMvcLinkBuilder
@@ -82,7 +82,6 @@ public class PersonServices {
 
         BeanUtils.copyProperties(person, entity);
 
-
         var vo = Mapper.parseObject(repository.save(entity), PersonVO.class);
 
         vo.add(WebMvcLinkBuilder
@@ -105,9 +104,9 @@ public class PersonServices {
     public PersonVOV2 createV2(PersonVOV2 personVOV2)
             throws InvocationTargetException, IllegalAccessException {
         logger.info("Creating one person!");
+
         var entity = personMapper.convertVoToEntity(personVOV2);
         var vo = personMapper.convertEntityToVo(repository.save(entity));
-
 
         return vo;
     }

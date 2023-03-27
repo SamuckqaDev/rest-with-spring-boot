@@ -1,8 +1,17 @@
+cors:
+  originPatterns: http://localhost:8080,http://localhost:3000,https://matsutech.ti.com.br
 spring:
+  security:
+    jwt:
+      token:
+        secret-key: 53cr37
+        expire-length: 3600000
   datasource:
-    username: postgres
     url: jdbc:postgresql://localhost:49153/rest_with_spring_bootdb
+    username: postgres
     password: postgrespw
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: always
   jpa:
     database: POSTGRESQL
     properties:

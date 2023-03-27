@@ -7,7 +7,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "TB_PERSON")
-public class Person  implements Serializable {
+public class Person implements Serializable {
     private static final long serialVersionUID;
 
     static {
@@ -17,16 +17,24 @@ public class Person  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Column(name = "first_name")
     private String firstName;
+
     @Column(name = "last_name")
     private String lastName;
+
     @Column
     private String address;
+
     @Column
     private String gender;
 
     public Person() {
+    }
+
+    public String getFirstName() {
+        return firstName;
     }
 
     public Long getId() {
@@ -37,9 +45,7 @@ public class Person  implements Serializable {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
+
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -71,8 +77,10 @@ public class Person  implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Person person = (Person) o;
         return Objects.equals(id, person.id)
                 && Objects.equals(firstName, person.firstName)
@@ -80,8 +88,12 @@ public class Person  implements Serializable {
                 && Objects.equals(address, person.address)
                 && Objects.equals(gender, person.gender);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, address, gender);
+    }
+
+    public void getIdPerson(long l) {
     }
 }

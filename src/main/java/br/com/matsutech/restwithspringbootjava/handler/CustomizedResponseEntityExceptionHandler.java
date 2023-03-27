@@ -1,6 +1,7 @@
 package br.com.matsutech.restwithspringbootjava.handler;
 
 import br.com.matsutech.restwithspringbootjava.exceptions.ExceptionResponse;
+import br.com.matsutech.restwithspringbootjava.exceptions.InvalidJwtAuthenticationException;
 import br.com.matsutech.restwithspringbootjava.exceptions.ResourceNotFoundEntityException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,4 +34,15 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
         return new ResponseEntity<>(exception, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(InvalidJwtAuthenticationException.class)
+    public  ResponseEntity<ExceptionResponse> handleInvalidJwtAuthenticationException(
+            Exception ex, WebRequest request){
+        var exception = new ExceptionResponse(new Date(),
+                ex.getMessage(),
+                request.getDescription(false));
+
+        return new ResponseEntity<>(exception, HttpStatus.FORBIDDEN);
+    }
+
 }

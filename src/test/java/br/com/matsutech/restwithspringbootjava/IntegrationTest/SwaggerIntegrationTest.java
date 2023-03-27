@@ -1,9 +1,9 @@
-package IntegrationTest;
+package br.com.matsutech.restwithspringbootjava.IntegrationTest;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
 
-import configs.TestConfigs;
+import br.com.matsutech.restwithspringbootjava.configs.TestConfigs;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,8 +16,8 @@ public class SwaggerIntegrationTest extends AbstractIntegrationTest {
     @Test
     @DisplayName("Should display Swagger UI page")
     public void shouldDisplaySwaggerUiPage() {
-        String content;
-        content = given()
+
+        var content = given()
                 .basePath("/swagger-ui/index.html")
                 .port(TestConfigs.SERVER_PORT)
                 .when()

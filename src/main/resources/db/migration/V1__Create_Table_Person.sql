@@ -4,7 +4,7 @@
 
 -- DROP TABLE public.tb_person;
 
-CREATE TABLE public.tb_person (
+CREATE TABLE  public.tb_person (
 	id int8 NOT NULL,
 	first_name varchar(255) NULL,
 	last_name varchar(255) NULL,

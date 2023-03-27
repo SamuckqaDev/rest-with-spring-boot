@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Mapper {
 
@@ -14,13 +15,10 @@ public class Mapper {
     }
 
     public static <O, D> List<D> parseListObject(List<O> origin, Class<D> destination) {
-        List<D> destinationList = new ArrayList<D>();
-        for (O o :
-                origin
-        ) {
-            destinationList.add(mapper.map(o, destination));
-        }
-        return destinationList;
+        return origin.stream()
+                .map(o -> mapper.map(o, destination))
+                .collect(Collectors.toList());
     }
+
 
 }

@@ -1,8 +1,6 @@
-﻿CREATE TABLE IF NOT EXISTS `user_permission` (
-  `id_user` bigint(20) NOT NULL,
-  `id_permission` bigint(20) NOT NULL,
-  PRIMARY KEY (`id_user`,`id_permission`),
-  KEY `fk_user_permission_permission` (`id_permission`),
-  CONSTRAINT `fk_user_permission` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`),
-  CONSTRAINT `fk_user_permission_permission` FOREIGN KEY (`id_permission`) REFERENCES `permission` (`id`)
-) ENGINE=InnoDB;
+﻿CREATE TABLE IF NOT EXISTS user_permission (
+  id SERIAL PRIMARY KEY,
+  id_user INT8 NOT NULL REFERENCES users(id),
+  id_permission INT8 NOT NULL REFERENCES permission(id),
+  CONSTRAINT unique_user_permission UNIQUE (id_user, id_permission)
+);

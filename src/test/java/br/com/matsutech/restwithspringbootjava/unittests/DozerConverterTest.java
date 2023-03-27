@@ -1,4 +1,4 @@
-package unitTests;
+package br.com.matsutech.restwithspringbootjava.unittests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -9,7 +9,7 @@ import br.com.matsutech.restwithspringbootjava.data.vo.v1.PersonVO;
 
 import br.com.matsutech.restwithspringbootjava.mapper.Mapper;
 import br.com.matsutech.restwithspringbootjava.model.Person;
-import mocks.MockPerson;
+import br.com.matsutech.restwithspringbootjava.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

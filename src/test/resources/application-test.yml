@@ -1,10 +1,12 @@
 spring:
+  main:
+    web-application-type: none
   port: 8888
   datasource:
     driver-class-name: org.postgresql.Driver
     initialization-mode: always
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    database-platform: org.hibernate.dialect.PostgresSQL95Dialect
     hibernate:
       ddl-auto: update
       jdbc:
