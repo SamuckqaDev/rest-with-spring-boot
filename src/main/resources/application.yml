@@ -7,9 +7,9 @@ spring:
         secret-key: 53cr37
         expire-length: 3600000
   datasource:
-    url: jdbc:postgresql://localhost:49153/rest_with_spring_bootdb
+    url: jdbc:postgresql://localhost:5432/rest_with_spring_bootdb
     username: postgres
-    password: postgrespw
+    password: postgrepw
     driver-class-name: org.postgresql.Driver
     initialization-mode: always
   jpa:
@@ -22,6 +22,10 @@ spring:
     show-sql: 'true'
     hibernate:
       ddl-auto: none
+      spring doc:
+        pathsToMatch:
+          - /auth/**
+          - /api/**/v1/**
   database:
     driverClassName: org.postgresql.Driver
   hibernate:

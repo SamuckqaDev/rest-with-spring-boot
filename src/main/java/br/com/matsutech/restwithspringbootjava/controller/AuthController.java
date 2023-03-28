@@ -19,24 +19,18 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "Authentication End-point")
 @RestController
 @RequestMapping("/auth")
-public class AuthController implements AuthenticationManager {
-
+public class AuthController{
     @Autowired
     private AuthServices authServices;
 
+    @SuppressWarnings("rawtypes")
     @Operation(summary = "Authenticates a user and returns a token")
-    @PostMapping(value = "/singIn")
-    public ResponseEntity singIn(@RequestBody AccountCredentialsVO data) throws Exception {
-        if (checkIsBlankAndNotNull(data)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request ");
-        }
-
+    @PostMapping(value = "/signin")
+    public ResponseEntity signin(@RequestBody AccountCredentialsVO data) {
+        if (checkIsBlankAndNotNull(data))
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");
         var token = authServices.signIn(data);
-
-        if (token == null) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request ");
-        }
-
+        if (token == null) return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");
         return token;
     }
 
@@ -45,8 +39,5 @@ public class AuthController implements AuthenticationManager {
                 || data.getPassword() == null || data.getUsername().isBlank() || data.getPassword().isBlank();
     }
 
-    @Override
-    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        return null;
-    }
+
 }

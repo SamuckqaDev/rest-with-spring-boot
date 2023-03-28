@@ -15,9 +15,11 @@ spring:
     show-sql: true
   hibernate:
     format_sql: true
-  springdoc:
+  spring doc:
     api-docs:
       enabled: true
-    pathsToMatch: /api/**/v1/**
+    pathsToMatch:
+      - /auth/**
+      - /api/**/v1/**
     swagger-ui:
       use-root-path: true

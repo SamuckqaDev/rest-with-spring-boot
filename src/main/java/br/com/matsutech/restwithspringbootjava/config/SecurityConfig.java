@@ -5,6 +5,8 @@ import br.com.matsutech.restwithspringbootjava.secutiryJwt.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -17,12 +19,9 @@ public class SecurityConfig {
 
     @Autowired
     private JwtTokenProvider tokenProvider;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
-
     private HttpSecurity addFilterBefore;
-
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -33,7 +32,7 @@ public class SecurityConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/signin", "/auth/refresh", "/api-docs/**", "/swagger-ui.html**")
+                .requestMatchers("/auth/signIn", "/auth/refresh", "/api-docs/**", "/swagger-ui/**")
                 .permitAll()
                 .requestMatchers("/api/**")
                 .authenticated()
@@ -44,9 +43,12 @@ public class SecurityConfig {
                 .and()
                 .apply(new JwtConfigure(tokenProvider));
 
-
         return http.build();
     }
 
-
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+            throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
 }
