@@ -1,13 +1,13 @@
 package br.com.matsutech.restwithspringbootjava.data.vo.v1;
 
-import java.io.Serial;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
 public class TokenVO implements Serializable {
 
-    @Serial
+
     private static final long serialVersionUID = 1L;
 
     private String username;

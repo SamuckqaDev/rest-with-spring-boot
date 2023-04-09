@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.SecurityFilterChain;
@@ -27,18 +28,24 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .httpBasic().disable()
-                .csrf().disable()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authorizeHttpRequests()
-                .requestMatchers("/auth/signIn", "/auth/refresh", "/api-docs/**", "/swagger-ui/**")
-                .permitAll()
-                .requestMatchers("/api/**")
-                .authenticated()
-                .requestMatchers("/users")
-                .denyAll()
-                .and()
+                .csrf(AbstractHttpConfigurer::disable)
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+
+                .authorizeHttpRequests( authorizeHttpRequest-> {
+                    authorizeHttpRequest.requestMatchers(
+                            "/auth/signIn",
+                                    "/auth/refresh/**",
+                                    "/api-docs/**",
+                                    "/swagger-ui.html**",
+                                    "/auth/**",
+                                    "/swagger-ui/**",
+                                    "/v3/api-docs/**")
+                            .permitAll()
+                            .requestMatchers("/api/**")
+                            .authenticated()
+                            .requestMatchers("/users").denyAll();
+
+                })
                 .cors()
                 .and()
                 .apply(new JwtConfigure(tokenProvider));

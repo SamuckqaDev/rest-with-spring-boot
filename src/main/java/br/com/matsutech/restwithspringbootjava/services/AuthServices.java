@@ -29,7 +29,7 @@ public class AuthServices {
         this.repository = repository;
     }
 
-    public ResponseEntity<TokenVO> signIn(AccountCredentialsVO data) throws Exception {
+    public ResponseEntity<Object> signIn(AccountCredentialsVO data) throws Exception {
 
         var username = data.getUsername();
         var password = data.getPassword();
